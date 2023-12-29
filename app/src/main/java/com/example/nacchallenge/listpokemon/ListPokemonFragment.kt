@@ -2,9 +2,11 @@ package com.example.nacchallenge.listpokemon
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.domain.usecases.pokemon.model.PokemonModel
 import com.example.nacchallenge.R
@@ -71,5 +73,11 @@ class ListPokemonFragment : Fragment(R.layout.fragment_list_pokemon), IClickPoke
 
 
     override fun onClick(pokemonItem: PokemonModel) {
+        findNavController().navigate(
+            R.id.action_listPokemonFragment2_to_detailPokemonFragment,
+            bundleOf(
+                "name_pokemon" to pokemonItem.name
+            )
+        )
     }
 }

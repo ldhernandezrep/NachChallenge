@@ -8,5 +8,14 @@
         android:id="@+id/listPokemonFragment2"
         android:name="com.example.nacchallenge.listpokemon.ListPokemonFragment"
         android:label="fragment_list_pokemon"
-        tools:layout="@layout/fragment_list_pokemon" />
+        tools:layout="@layout/fragment_list_pokemon" >
+        <action
+            android:id="@+id/action_listPokemonFragment2_to_detailPokemonFragment"
+            app:destination="@id/detailPokemonFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailPokemonFragment"
+        android:name="com.example.nacchallenge.detailpokemon.DetailPokemonFragment"
+        android:label="DetailPokemonFragment"
+        tools:layout="@layout/fragment_detail_pokemon" />
 </navigation>

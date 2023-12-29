@@ -8,6 +8,7 @@ import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.domain.usecases.pokemon.IGetAllPokemonUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -24,6 +25,10 @@ class ListViewModel @Inject constructor(private val getAllPokemonUseCase: IGetAl
             try {
                 getAllPokemonUseCase.invoke()
                     .onStart { _viewState.value = ListViewState.Loading }
+                    .catch {
+                        _viewState.value =
+                            ListViewState.ErrorLoadingItems(it.message ?: "Unknown error")
+                    }
                     .collect{
                         _viewState.value = ListViewState.ItemsSearch(pokemons = it)
                     }
