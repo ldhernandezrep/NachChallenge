@@ -1,7 +1,7 @@
 package com.example.nacchallenge.listpokemon
 
-import PokemonModel
 import androidx.paging.PagingData
+import com.example.domain.usecases.pokemon.model.PokemonModel
 
 sealed class ListViewState {
 

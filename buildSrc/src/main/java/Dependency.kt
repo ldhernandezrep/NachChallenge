@@ -12,6 +12,33 @@ sealed class Dependency(private val version: String, private val pakage: String)
             Kapt(version = Versions.hilt, pakage = "com.google.dagger:hilt-android-compiler")
     }
 
+    object Retrofit2 :
+        Dependency(version = Versions.retrofit2, pakage = "com.squareup.retrofit2:retrofit")
+
+
+    object RetrofitConverter : Dependency(
+        version = Versions.retrofitConverter,
+        pakage = "com.squareup.retrofit2:converter-moshi"
+    )
+
+    //Moshi
+    object Moshi : Dependency(version = Versions.moshi, pakage = "com.squareup.moshi:moshi")
+    object MoshiAdapter :
+        Dependency(version = Versions.moshi, pakage = "com.squareup.moshi:moshi-adapters")
+
+    object MoshiKotlin :
+        Dependency(version = Versions.moshi, pakage = "com.squareup.moshi:moshi-kotlin")
+
+    object Retrofit2GsonAdapter : Dependency(
+        version = Versions.gson,
+        pakage = "com.squareup.retrofit2:converter-gson"
+    )
+
+    object Retrofit2LoggingInterceptor : Dependency(
+        version = Versions.loggingInterceptor,
+        pakage = "com.squareup.okhttp3:logging-interceptor"
+    )
+
     object Hilt : Dependency(version = Versions.hilt, "com.google.dagger:hilt-android")
 
     object Coroutines :

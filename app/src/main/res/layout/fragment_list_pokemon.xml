@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.listpokemon.ListPokemonFragment">
+    tools:context=".listpokemon.ListPokemonFragment">
 
     <LinearLayout
         android:id="@+id/llyMain"
@@ -12,17 +12,10 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rcvGrid"
-            android:layout_marginTop="10dp"
-            android:visibility="visible"
-            android:layout_marginStart="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rcvRow"
-            android:visibility="gone"
+            android:visibility="visible"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </LinearLayout>

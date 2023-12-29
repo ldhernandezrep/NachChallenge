@@ -1,18 +1,19 @@
+package com.example.nacchallenge.listpokemon
+
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.domain.usecases.pokemon.model.PokemonModel
 import com.example.nacchallenge.R
 import com.example.nacchallenge.databinding.FragmentListPokemonBinding
-import com.example.nacchallenge.listpokemon.ListViewState
 import com.example.nacchallenge.listpokemon.adapters.PokemonsAdapterList
 import com.example.nacchallenge.listpokemon.viewmodel.ListViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import observe
-
 
 @AndroidEntryPoint
 class ListPokemonFragment : Fragment(R.layout.fragment_list_pokemon), IClickPokemonListener {
@@ -20,10 +21,8 @@ class ListPokemonFragment : Fragment(R.layout.fragment_list_pokemon), IClickPoke
     private lateinit var binding: FragmentListPokemonBinding
     private lateinit var pokemonAdapterList: PokemonsAdapterList
     private val viewModel: ListViewModel by viewModels()
-    var listPokemon: List<PokemonModel> = listOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        setHasOptionsMenu(true)
         super.onCreate(savedInstanceState)
     }
 
@@ -66,8 +65,6 @@ class ListPokemonFragment : Fragment(R.layout.fragment_list_pokemon), IClickPoke
         pokemonAdapterList =
             PokemonsAdapterList(this)
         val linearLayoutManager = LinearLayoutManager(context)
-        binding.rcvGrid.visibility = View.GONE
-        binding.rcvRow.visibility = View.VISIBLE
         binding.rcvRow.layoutManager = linearLayoutManager
         binding.rcvRow.adapter = pokemonAdapterList
     }

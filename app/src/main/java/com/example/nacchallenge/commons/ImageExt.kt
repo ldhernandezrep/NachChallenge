@@ -36,40 +36,8 @@ fun ImageView.loadImageUrl(url: String, nameImage: String? = null, context: Cont
     Glide.with(context)
         .load(url)
         .apply(requestOptions)
-        .listener(object : RequestListener<Drawable> {
-            override fun onLoadFailed(
-                e: GlideException?,
-                model: Any?,
-                target: com.bumptech.glide.request.target.Target<Drawable>?,
-                isFirstResource: Boolean
-            ): Boolean {
-                return true;
-            }
-
-            override fun onResourceReady(
-                resource: Drawable?,
-                model: Any?,
-                target: com.bumptech.glide.request.target.Target<Drawable>?,
-                dataSource: DataSource?,
-                isFirstResource: Boolean
-            ): Boolean {
-                val bmp =
-                    (resource as BitmapDrawable).bitmap.copy(Bitmap.Config.ARGB_8888, true)
-
-                Palette.from(bmp).generate { palette ->
-                    palette?.dominantSwatch?.rgb?.let { colorValue ->
-                        val gradientDrawable = GradientDrawable(
-                            GradientDrawable.Orientation.TL_BR,
-                            intArrayOf(Color.TRANSPARENT, colorValue)
-                        )
-                        gradientDrawable.shape = GradientDrawable.OVAL
-                        this@loadImageUrl.background = gradientDrawable
-                    }
-                }
-                return false
-            }
-        })
         .into(this)
+
 }
 
 private fun generateTextDrawable(text: String, context: Context): Drawable {

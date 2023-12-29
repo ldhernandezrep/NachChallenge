@@ -1,7 +1,7 @@
 package com.example.nacchallenge.listpokemon
 
-import PokemonModel
 import androidx.recyclerview.widget.DiffUtil
+import com.example.domain.usecases.pokemon.model.PokemonModel
 
 class Comparator {
     companion object {

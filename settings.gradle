@@ -15,3 +15,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "NacChallenge"
 include ':app'
+include ':network'
+include ':domain'
