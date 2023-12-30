@@ -21,4 +21,7 @@ object Versions {
     const val gson = "2.9.0"
     const val retrofit2 = "2.9.0"
     const val loggingInterceptor = "4.9.3"
+
+    //Room
+    const val room = "2.4.2"
 }

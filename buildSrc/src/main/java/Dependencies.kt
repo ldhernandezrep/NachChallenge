@@ -38,4 +38,10 @@ object Dependencies {
         Dependency.Glide,
     ).plus(common).plus(di)
 
+    val database = listOf(
+        Dependency.RoomRuntime,
+        Dependency.RoomKtx,
+        Dependency.Kapt.RoomCompiler,
+    ).plus(common).plus(di)
+
 }

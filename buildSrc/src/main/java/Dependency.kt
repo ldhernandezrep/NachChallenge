@@ -10,6 +10,10 @@ sealed class Dependency(private val version: String, private val pakage: String)
         Dependency(version, pakage) {
         object Hilt :
             Kapt(version = Versions.hilt, pakage = "com.google.dagger:hilt-android-compiler")
+
+        object RoomCompiler :
+            Kapt(version = Versions.room, pakage = "androidx.room:room-compiler")
+
     }
 
     object Retrofit2 :
@@ -64,5 +68,8 @@ sealed class Dependency(private val version: String, private val pakage: String)
     object NavigationFragment : Dependency(version = Versions.navigation, pakage = "androidx.navigation:navigation-fragment-ktx")
     object NavigationUI : Dependency(version = Versions.navigation, pakage = "androidx.navigation:navigation-ui-ktx")
     object Glide : Dependency(version = Versions.glide, pakage = "com.github.bumptech.glide:glide")
+
+    object RoomRuntime : Dependency(version = Versions.room, pakage = "androidx.room:room-runtime")
+    object RoomKtx : Dependency(version = Versions.room, pakage = "androidx.room:room-ktx")
 
 }
