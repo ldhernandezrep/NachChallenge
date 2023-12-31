@@ -35,6 +35,7 @@ android {
 
 dependencies {
 
+    implementation(project(mapOf("path" to ":pokemon")))
     customImplementation(Dependencies.network)
     testImplementation ("junit:junit:4.13.2")
     androidTestImplementation ("androidx.test.ext:junit:1.1.5")

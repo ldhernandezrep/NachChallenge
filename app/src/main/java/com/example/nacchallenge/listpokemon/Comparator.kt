@@ -1,21 +1,21 @@
 package com.example.nacchallenge.listpokemon
 
 import androidx.recyclerview.widget.DiffUtil
-import com.example.domain.usecases.pokemon.model.PokemonModel
+import com.models.lpokemon.model.PokemonModel
 
 class Comparator {
     companion object {
-       public val PokemonComparator = object : DiffUtil.ItemCallback<PokemonModel>() {
+       public val PokemonComparator = object : DiffUtil.ItemCallback<com.models.lpokemon.model.PokemonModel>() {
             override fun areItemsTheSame(
-                oldItem: PokemonModel,
-                newItem: PokemonModel
+                oldItem: com.models.lpokemon.model.PokemonModel,
+                newItem: com.models.lpokemon.model.PokemonModel
             ): Boolean {
                 return oldItem.name == newItem.name
             }
 
             override fun areContentsTheSame(
-                oldItem: PokemonModel,
-                newItem: PokemonModel
+                oldItem: com.models.lpokemon.model.PokemonModel,
+                newItem: com.models.lpokemon.model.PokemonModel
             ): Boolean {
                 return oldItem == newItem
             }

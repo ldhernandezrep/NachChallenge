@@ -1,7 +1,7 @@
 package com.example.nacchallenge.listpokemon
 
-import com.example.domain.usecases.pokemon.model.PokemonModel
+import com.models.lpokemon.model.PokemonModel
 
 interface IClickPokemonListener {
-    fun onClick(pokemonItem: PokemonModel)
+    fun onClick(pokemonItem: com.models.lpokemon.model.PokemonModel)
 }

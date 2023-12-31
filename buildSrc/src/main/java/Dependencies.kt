@@ -41,7 +41,16 @@ object Dependencies {
     val database = listOf(
         Dependency.RoomRuntime,
         Dependency.RoomKtx,
+        Dependency.RoomPaging,
         Dependency.Kapt.RoomCompiler,
+        Dependency.Paging,
     ).plus(common).plus(di)
+
+    val listRepository = listOf(
+        Dependency.Paging,
+        Dependency.RoomPaging
+    ).plus(di)
+
+    val commonUtils = di.plus(common)
 
 }

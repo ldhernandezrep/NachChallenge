@@ -4,14 +4,14 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
-import com.example.domain.usecases.pokemon.model.PokemonModel
+import com.models.lpokemon.model.PokemonModel
 import com.example.nacchallenge.commons.BaseViewHolder
 import com.example.nacchallenge.commons.loadImageUrl
 import com.example.nacchallenge.databinding.ItemRowBinding
 import com.example.nacchallenge.listpokemon.Comparator.Companion.PokemonComparator
 import com.example.nacchallenge.listpokemon.IClickPokemonListener
 
-class PokemonsAdapterList(val iClickPokemonListener: IClickPokemonListener) : PagingDataAdapter<PokemonModel, PokemonsAdapterList.PokemonListViewHolder>(PokemonComparator) {
+class PokemonsAdapterList(val iClickPokemonListener: IClickPokemonListener) : PagingDataAdapter<com.models.lpokemon.model.PokemonModel, PokemonsAdapterList.PokemonListViewHolder>(PokemonComparator) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PokemonListViewHolder {
         val itemBinding =
@@ -28,9 +28,9 @@ class PokemonsAdapterList(val iClickPokemonListener: IClickPokemonListener) : Pa
 
 
     inner class PokemonListViewHolder(var binding: ItemRowBinding, var context: Context) :
-        BaseViewHolder<PokemonModel>(binding.root) {
+        BaseViewHolder<com.models.lpokemon.model.PokemonModel>(binding.root) {
 
-        override fun bind(item: PokemonModel) {
+        override fun bind(item: com.models.lpokemon.model.PokemonModel) {
             binding.tvNombrePokemonRow.text = item.name.uppercase()
             binding.tvNumeroPokemon.text = "# ${item.number.toString()}"
             binding.lnyRow.setOnClickListener {

@@ -13,8 +13,13 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/buildSrc" />
+            <option value="$PROJECT_DIR$/commons" />
             <option value="$PROJECT_DIR$/domain" />
+            <option value="$PROJECT_DIR$/localpokemon" />
+            <option value="$PROJECT_DIR$/mylocations" />
             <option value="$PROJECT_DIR$/network" />
+            <option value="$PROJECT_DIR$/pokemon" />
+            <option value="$PROJECT_DIR$/pokemonrepository" />
           </set>
         </option>
       </GradleProjectSettings>

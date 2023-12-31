@@ -1,16 +1,16 @@
 package com.example.nacchallenge.detailpokemon
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.domain.usecases.pokemon.model.PokemonDetail
 import com.example.nacchallenge.R
 import com.example.nacchallenge.commons.loadImageUrl
 import com.example.nacchallenge.databinding.FragmentDetailPokemonBinding
 import com.example.nacchallenge.detailpokemon.viewmodels.DetailPokemonViewModel
+import com.models.lpokemon.model.PokemonDetail
 import dagger.hilt.android.AndroidEntryPoint
 import observe
 

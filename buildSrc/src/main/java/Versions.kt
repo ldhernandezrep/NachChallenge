@@ -23,5 +23,5 @@ object Versions {
     const val loggingInterceptor = "4.9.3"
 
     //Room
-    const val room = "2.4.2"
+    const val room = "2.5.1"
 }

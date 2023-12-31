@@ -71,5 +71,7 @@ sealed class Dependency(private val version: String, private val pakage: String)
 
     object RoomRuntime : Dependency(version = Versions.room, pakage = "androidx.room:room-runtime")
     object RoomKtx : Dependency(version = Versions.room, pakage = "androidx.room:room-ktx")
+    object RoomPaging : Dependency(version = Versions.room, pakage = "androidx.room:room-paging")
+
 
 }

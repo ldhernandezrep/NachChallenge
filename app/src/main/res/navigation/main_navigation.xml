@@ -18,4 +18,5 @@
         android:name="com.example.nacchallenge.detailpokemon.DetailPokemonFragment"
         android:label="DetailPokemonFragment"
         tools:layout="@layout/fragment_detail_pokemon" />
+    <include app:graph="@navigation/location_nav" />
 </navigation>

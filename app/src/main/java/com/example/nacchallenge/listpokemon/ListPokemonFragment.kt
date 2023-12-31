@@ -8,7 +8,6 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.domain.usecases.pokemon.model.PokemonModel
 import com.example.nacchallenge.R
 import com.example.nacchallenge.databinding.FragmentListPokemonBinding
 import com.example.nacchallenge.listpokemon.adapters.PokemonsAdapterList
@@ -72,7 +71,7 @@ class ListPokemonFragment : Fragment(R.layout.fragment_list_pokemon), IClickPoke
     }
 
 
-    override fun onClick(pokemonItem: PokemonModel) {
+    override fun onClick(pokemonItem: com.models.lpokemon.model.PokemonModel) {
         findNavController().navigate(
             R.id.action_listPokemonFragment2_to_detailPokemonFragment,
             bundleOf(
