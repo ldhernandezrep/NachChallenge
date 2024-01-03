@@ -4,7 +4,6 @@ import android.Manifest
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -36,9 +35,7 @@ class LocationFragment : Fragment(R.layout.fragment_location) {
         binding = FragmentLocationBinding.bind(view)
 
         permissionManager.setOnPermissionsGrantedListener {
-            findNavController().navigate(
-                R.id.action_locationFragment_to_listLocationFragment,
-            )
+           viewModel.fetchLocations()
         }
 
         permissionManager.setOnPermissionsDeneListener {
