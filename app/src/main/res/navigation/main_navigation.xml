@@ -12,6 +12,9 @@
         <action
             android:id="@+id/action_listPokemonFragment2_to_detailPokemonFragment"
             app:destination="@id/detailPokemonFragment" />
+        <action
+            android:id="@+id/action_listPokemonFragment2_to_location_nav"
+            app:destination="@id/location_nav" />
     </fragment>
     <fragment
         android:id="@+id/detailPokemonFragment"

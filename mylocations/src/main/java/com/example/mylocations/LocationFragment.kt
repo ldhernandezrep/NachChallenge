@@ -1,78 +1,85 @@
 package com.example.mylocations
 
 import android.Manifest
-import android.content.pm.PackageManager
-import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.View
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.content.ContextCompat
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
+import com.example.mylocations.common.PermissionManager
+import com.example.mylocations.common.observe
 import com.example.mylocations.databinding.FragmentLocationBinding
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [LocationFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class LocationFragment : Fragment() {
+@AndroidEntryPoint
+class LocationFragment : Fragment(R.layout.fragment_location) {
     private lateinit var binding: FragmentLocationBinding
+    private val permissionManager by lazy { PermissionManager(this) }
+    private val viewModel: LocationViewModel by viewModels()
 
-    private val permissionsToRequest = arrayOf(
-        Manifest.permission.WRITE_EXTERNAL_STORAGE,
+    private val permissionsToRequest = listOf(
+        Manifest.permission.ACCESS_COARSE_LOCATION,
         Manifest.permission.ACCESS_FINE_LOCATION
     )
 
-    private val requestPermissionLauncher =
-        registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions ->
-            handlePermissionsResult(permissions)
-        }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            //param1 = it.getString(ARG_PARAM1)
-            //param2 = it.getString(ARG_PARAM2)
-        }
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentLocationBinding.bind(view)
-        binding.button.setOnClickListener {
-            if (checkPermissions()) {
 
-            } else {
-                requestPermissions()
-            }
+        permissionManager.setOnPermissionsGrantedListener {
+            findNavController().navigate(
+                R.id.action_locationFragment_to_listLocationFragment,
+            )
         }
-    }
 
-    private fun checkPermissions(): Boolean {
-        return permissionsToRequest.all { permission ->
-            ContextCompat.checkSelfPermission(requireContext(), permission) == PackageManager.PERMISSION_GRANTED
-        }
-    }
-
-    private fun requestPermissions() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            requestPermissionLauncher.launch(permissionsToRequest)
-        }
-    }
-
-    private fun handlePermissionsResult(permissions: Map<String, Boolean>) {
-        val allPermissionsGranted = permissions.all { it.value }
-        if (allPermissionsGranted) {
-            //Que hacer cuando se solicitan todos los permisos
-        } else {
+        permissionManager.setOnPermissionsDeneListener {
             //Que no hacer
         }
+
+        binding.button.setOnClickListener {
+            permissionManager.checkAndRequestPermissions(
+                permissionsToRequest
+            )
+        }
+        observe(viewModel.getViewState(), ::onViewState)
+
     }
 
+    private fun onViewState(state: LocationViewSate?) {
+        when (state) {
+            LocationViewSate.Loading -> {
+                binding.llProgressBar.root.visibility = View.VISIBLE
+                binding.llyMain.visibility = View.GONE
+            }
 
+            is LocationViewSate.LocationSearch -> {
+                lifecycleScope.launch {
+                    viewModel.saveLocation(state.location)
+                }
+            }
+
+            is LocationViewSate.SaveLocation -> {
+                Log.d("Ubicacion guardada","")
+                findNavController().navigate(
+                    R.id.action_locationFragment_to_listLocationFragment,
+                )
+            }
+
+            is LocationViewSate.ErrorLoadingItems -> {
+                binding.llProgressBar.root.visibility = View.GONE
+                binding.llyMain.visibility = View.VISIBLE
+            }
+
+            else -> {}
+        }
+    }
 }

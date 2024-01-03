@@ -8,7 +8,11 @@ import javax.inject.Inject
 
 class PokemonListServiceImp @Inject constructor (private val pokemonApi: PokemonApi) : PokemonListService {
 
-    override suspend fun getAll(limit:Int, offset:Int) = pokemonApi.getAll(limit,offset)
+    override suspend fun getAll(limit:Int, offset:Int) =
+        safeApiCall{
+            pokemonApi.getAll(limit,offset)
+        }
+
 
     /*override suspend fun load(params: LoadParams<Int>): LoadResult<Int,Result> {
         return try {

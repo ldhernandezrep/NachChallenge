@@ -38,13 +38,14 @@ fun PokemonModel.toEntity() = PokemonEntity(
     id = this.number.toString(),
     namePokemon = this.name,
     height = 0,
-    weight = 0
+    weight = 0,
+    url = this.url
 )
 
 fun PokemonEntity.toModel() = PokemonModel(
     number = this.id.toInt(),
     name = this.namePokemon,
-    url = ""
+    url = this.url
 )
 
 fun getDigitPokemon(url: String): Int {

@@ -1,0 +1,18 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/location"
+        android:icon="@drawable/ic_location_meni"
+        android:iconTint="#FFFFFF"
+        android:title="Location"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/pokemon"
+        android:icon="@drawable/ic_pokemon_menu"
+        android:iconTint="#FFFFFF"
+        android:title="Pokemon"
+        app:showAsAction="always" />
+
+
+</menu>

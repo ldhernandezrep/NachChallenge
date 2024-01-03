@@ -58,7 +58,7 @@ sealed class Dependency(private val version: String, private val pakage: String)
         Dependency(version = Versions.viewModel, pakage = "androidx.lifecycle:lifecycle-viewmodel-ktx")
 
     object Paging :
-        Dependency(version = Versions.paging, pakage = "androidx.paging:paging-runtime")
+        Dependency(version = Versions.paging, pakage = "androidx.paging:paging-runtime-ktx")
 
     object CoreKtx : Dependency(version = Versions.androidCore, pakage = "androidx.core:core-ktx")
 
@@ -72,6 +72,9 @@ sealed class Dependency(private val version: String, private val pakage: String)
     object RoomRuntime : Dependency(version = Versions.room, pakage = "androidx.room:room-runtime")
     object RoomKtx : Dependency(version = Versions.room, pakage = "androidx.room:room-ktx")
     object RoomPaging : Dependency(version = Versions.room, pakage = "androidx.room:room-paging")
+    object Maps : Dependency(version = Versions.maps, pakage = "com.google.android.gms:play-services-maps")
 
+    object PlayService : Dependency(version = Versions.playService, pakage = "com.google.android.gms:play-services-location")
+     object FirebaseFirestore : Dependency(version = Versions.firebaseFirestore , pakage = "com.google.firebase:firebase-firestore-ktx")
 
 }

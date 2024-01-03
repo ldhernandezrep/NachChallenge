@@ -1,6 +1,9 @@
 package com.example.nacchallenge.listpokemon
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
@@ -24,6 +27,7 @@ class ListPokemonFragment : Fragment(R.layout.fragment_list_pokemon), IClickPoke
     private val viewModel: ListViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        setHasOptionsMenu(true)
         super.onCreate(savedInstanceState)
     }
 
@@ -59,6 +63,24 @@ class ListPokemonFragment : Fragment(R.layout.fragment_list_pokemon), IClickPoke
             else -> {
 
             }
+        }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu_principal, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.location -> {
+                findNavController().navigate(
+                    R.id.action_listPokemonFragment2_to_location_nav
+                )
+                requireActivity().invalidateOptionsMenu()
+                true
+            }
+
+            else -> super.onOptionsItemSelected(item)
         }
     }
 

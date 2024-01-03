@@ -23,7 +23,7 @@ class PokemonRepositroyImple @Inject constructor (private val pokemonNetwork: Po
     override fun getPokemonList(): Flow<PagingData<PokemonModel>> {
 
         val pager = Pager(
-            config = PagingConfig(pageSize = 5),
+            config = PagingConfig(pageSize = 25),
             remoteMediator = PokemonDataMediator(pokemonLocal,pokemonNetwork),
             pagingSourceFactory = { pokemonLocal.pagingSource() }
         )

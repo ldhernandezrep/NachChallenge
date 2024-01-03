@@ -9,12 +9,12 @@ object Versions {
     //Hilt
     const val hilt = "2.42"
 
+    const val firebase = "2.42"
+
     const val liveData = "2.2.0"
     const val viewModel = "2.2.0"
 
-    const val coroutines = "1.6.1"
-    //Paging
-    const val paging = "3.0.0"
+
 
     const val moshi = "1.11.0"
     const val retrofitConverter = "2.9.0"
@@ -24,4 +24,13 @@ object Versions {
 
     //Room
     const val room = "2.5.1"
+
+    const val coroutines = "1.6.1"
+    //Paging
+    const val paging = "3.1.1"
+    //Play service
+    const val playService="18.0.0"
+    const val firebaseFirestore ="24.0.0"
+
+    const val maps ="18.0.1"
 }

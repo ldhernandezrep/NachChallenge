@@ -33,9 +33,24 @@ object Dependencies {
         Dependency.AppCompat,
         Dependency.ConstraintLayout,
         Dependency.Palette,
+        Dependency.FirebaseFirestore,
         Dependency.NavigationFragment,
         Dependency.NavigationUI,
         Dependency.Glide,
+    ).plus(common).plus(di)
+
+    val mulocation = listOf(
+        Dependency.Paging,
+        Dependency.LiveData,
+        Dependency.ViewModel,
+        Dependency.AppCompat,
+        Dependency.ConstraintLayout,
+        Dependency.Palette,
+        Dependency.FirebaseFirestore,
+        Dependency.NavigationFragment,
+        Dependency.NavigationUI,
+        Dependency.Glide,
+        Dependency.Maps,
     ).plus(common).plus(di)
 
     val database = listOf(
@@ -53,4 +68,12 @@ object Dependencies {
 
     val commonUtils = di.plus(common)
 
+    val locationLocal = listOf(
+        Dependency.PlayService
+    ).plus(di).plus(common)
+
+    val locationRepository = di.plus(common)
+
+    val locationDomain = di.plus(common)
+    val remoteLocation = listOf(Dependency.FirebaseFirestore).plus(di).plus(common)
 }

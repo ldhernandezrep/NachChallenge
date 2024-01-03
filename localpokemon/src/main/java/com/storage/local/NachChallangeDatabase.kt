@@ -9,7 +9,7 @@ import com.storage.local.entities.PokemonEntity
     entities = [
         PokemonEntity::class,
     ],
-    version = 1
+    version = 2
 )
 abstract class NachChallangeDatabase : RoomDatabase() {
     abstract fun pokemonDao(): PokemonDetailDao
