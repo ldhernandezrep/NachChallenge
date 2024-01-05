@@ -10,14 +10,16 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.nacchallenge.R
 import com.example.nacchallenge.databinding.FragmentListPokemonBinding
+import com.example.nacchallenge.listpokemon.adapters.PokemonLoadStateAdapter
 import com.example.nacchallenge.listpokemon.adapters.PokemonsAdapterList
 import com.example.nacchallenge.listpokemon.viewmodel.ListViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import observe
 
 @AndroidEntryPoint
 class ListPokemonFragment : Fragment(R.layout.fragment_list_pokemon), IClickPokemonListener {
@@ -35,11 +37,43 @@ class ListPokemonFragment : Fragment(R.layout.fragment_list_pokemon), IClickPoke
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentListPokemonBinding.bind(view)
         lifecycle.addObserver(viewModel)
-        observe(viewModel.getViewState(), ::onViewState)
-        viewModel.fetchPokemons()
+
+        pokemonAdapterList =
+            PokemonsAdapterList(this)
+        val linearLayoutManager = LinearLayoutManager(context)
+        binding.rcvRow.layoutManager = linearLayoutManager
+        binding.rcvRow.adapter = pokemonAdapterList
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.pokemonList.collectLatest { pagingData ->
+                pokemonAdapterList.submitData(pagingData)
+            }
+        }
+
+
+        binding.rcvRow.adapter = pokemonAdapterList.withLoadStateHeaderAndFooter(
+            header = PokemonLoadStateAdapter { pokemonAdapterList.retry() },
+            footer = PokemonLoadStateAdapter { pokemonAdapterList.retry() }
+        )
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.pokemonList.collectLatest { pagingData ->
+                pokemonAdapterList.submitData(pagingData)
+            }
+        }
+
+        pokemonAdapterList.addLoadStateListener { combinedLoadStates ->
+            val isListEmpty =
+                combinedLoadStates.refresh is LoadState.NotLoading && pokemonAdapterList.itemCount == 0
+            // Puedes manejar el estado de carga y errores según tu lógica aquí
+            // Por ejemplo, mostrar u ocultar vistas de carga y errores en tu fragmento.
+        }
+
+        /*observe(viewModel.getViewState(), ::onViewState)
+        viewModel.fetchPokemons()*/
     }
 
-    private fun onViewState(state: ListViewState?) {
+   /* private fun onViewState(state: ListViewState?) {
         when (state) {
             ListViewState.Loading -> {
                 binding.llProgressBar.root.visibility = View.VISIBLE
@@ -64,7 +98,7 @@ class ListPokemonFragment : Fragment(R.layout.fragment_list_pokemon), IClickPoke
 
             }
         }
-    }
+    }*/
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.menu_principal, menu)

@@ -1,13 +1,15 @@
 package com.example.nacchallenge.listpokemon.viewmodel
 
-import com.example.nacchallenge.listpokemon.ListViewState
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
+import androidx.paging.PagingData
 import com.example.domain.usecases.pokemon.IGetAllPokemonUseCase
+import com.example.nacchallenge.listpokemon.ListViewState
+import com.models.lpokemon.model.PokemonModel
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
@@ -38,5 +40,7 @@ class ListViewModel @Inject constructor(private val getAllPokemonUseCase: IGetAl
             }
         }
     }
+
+    val pokemonList: Flow<PagingData<PokemonModel>> = getAllPokemonUseCase.invoke()
 
 }

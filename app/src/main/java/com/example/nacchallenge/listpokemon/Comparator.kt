@@ -1,7 +1,6 @@
 package com.example.nacchallenge.listpokemon
 
 import androidx.recyclerview.widget.DiffUtil
-import com.models.lpokemon.model.PokemonModel
 
 class Comparator {
     companion object {
@@ -10,7 +9,7 @@ class Comparator {
                 oldItem: com.models.lpokemon.model.PokemonModel,
                 newItem: com.models.lpokemon.model.PokemonModel
             ): Boolean {
-                return oldItem.name == newItem.name
+                return oldItem.number == newItem.number
             }
 
             override fun areContentsTheSame(
